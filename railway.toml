@@ -1,0 +1,6 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+startCommand = "cd backend && python manage.py migrate && gunicorn backend.wsgi"
+buildCommand = "apt-get update && apt-get install -y nodejs npm && cd django-todo-react/frontend && npm install && npm run build && cd ../.."
