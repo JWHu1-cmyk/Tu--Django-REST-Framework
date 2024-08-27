@@ -1,5 +1,8 @@
 {
     "cSpell.words": [
-        "todos"
+        "gunicorn",
+        "nixpacks",
+        "todos",
+        "wsgi"
     ]
 }
