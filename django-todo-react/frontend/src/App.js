@@ -4,8 +4,11 @@ import axios from "axios";
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://127.0.0.1:8000';
 
-// Add this line here
+// Remove the quotes around the URL
 axios.defaults.baseURL = API_URL;
+
+// Add this line here
+ 
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 
 class App extends Component {
@@ -29,7 +32,7 @@ class App extends Component {
 
   refreshList = () => {
     axios
-      .get(`${API_URL}/api/todos/`)
+      .get('/api/todos/')
       .then((res) => this.setState({ todoList: res.data }))
       .catch((err) => console.log(err));
   };
@@ -49,7 +52,7 @@ class App extends Component {
 
     if (item.id) {
       axios
-        .put(`${API_URL}/api/todos/${item.id}/`, item)
+        .put(`/api/todos/${item.id}/`, item)
         .then((res) => this.refreshList())
         .catch((error) => {
           console.error("Error updating item:", error.response.data);
@@ -57,7 +60,7 @@ class App extends Component {
       return;
     }
     axios
-      .post(`${API_URL}/api/todos/`, item)
+      .post('/api/todos/', item)
       .then((res) => this.refreshList())
       .catch((error) => {
         console.error("Error creating item:", error.response.data);
@@ -68,7 +71,7 @@ class App extends Component {
 
   handleDelete = (item) => {
     axios
-      .delete(`${API_URL}/api/todos/${item.id}/`)
+      .delete(`/api/todos/${item.id}/`)
       .then((res) => this.refreshList());
   };
 
